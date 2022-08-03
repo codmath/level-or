@@ -2,7 +2,9 @@ queue<Node*>q;
         //insert root of tree into queue ds
         q.push(curr);
         while(!q.empty()){
-            Node* node=q.front();//gives the first inserted data and store it in node
+            int qsize=q.size()
+            for(int i=0; i<q.size(); i++){
+            Node* node=q.front();
             q.pop();//delete the first inserted data
             ans.push_back(node->data);//insert the node data in ans ds
             if(node->left){         //check firstly for left 
@@ -10,6 +12,7 @@ queue<Node*>q;
             }
             if(node->right){        //check secondly for right
                 q.push(node->right);
+            }
             }
         }
         
