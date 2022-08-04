@@ -1,0 +1,47 @@
+struct Node
+{
+	int data;
+	Node* left;
+	Node* right;
+};*/
+
+class Solution
+{
+    public:
+    int singlevalued(Node *root)
+    {
+        //code here
+        queue<Node*>q;
+        //insert root of tree into queue ds
+        q.push(root);
+        int count=0;//store the singlevalued tree
+        while(!q.empty()){
+            int qsize=q.size();
+            for(int i=0; i<q.size(); i++){
+            Node* node=q.front();
+            q.pop();//delete the first inserted data
+            //insert the node data in ans ds
+            if(node->left){         //check firstly for left 
+                q.push(node->left);
+            }
+            if(node->right){        //check secondly for right
+                q.push(node->right);
+            }
+            if(node->left->data==node->data&&node->right->data==node->data){
+                count++;
+            }
+            if(node->left==NULL &&node->right==NULL){
+                count++;
+            }
+            if(node->left==NULL&&node->right->data==node->data){
+                count++;
+            }
+            if(node->right==NULL&&node->left->data==node->data){
+                count++;
+            }
+            }
+        }
+        return count;
+    }
+    
+};
