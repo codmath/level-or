@@ -1,0 +1,40 @@
+int height(struct Node* node){
+        // code here 
+        if(node==NULL) return 0;
+        
+        int lh=height(node->left);
+        
+        int rh=height(node->right);
+        return 1+max(lh, rh);//find maximum of left and right node for each and every node
+        
+    }
+// function should print the nodes at k distance from root
+void help(struct Node* root, int k, vector<int>&ans)
+{
+if(root==NULL)
+  {
+      return;
+  }
+  if(k==0){
+      ans.push_back(root->data);
+  }
+  //recursive trevesral
+  else
+  {
+  help(root->left, k-1, ans);
+  help(root->right, k-1, ans);
+  }
+  }
+vector<int> Kdistance(struct Node *root, int k)
+{
+  // Your code here
+  vector<int> ans;
+  int check=height(root);
+  if(k>check){
+      return ans;
+  }
+  help(root, k, ans);
+  //base condititon
+ 
+  return ans;
+}
