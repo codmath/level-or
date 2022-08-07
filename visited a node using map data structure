@@ -1,0 +1,33 @@
+
+  int help(map<Node*, Node*>mpp, Node* tar)
+  {
+      map<Node*, int> visited;
+      queue<Node*> q;
+      q.push(tar);
+      visited[tar]=1;
+      while(!q.empty()){
+          int size=q.size();
+          int fl=0;
+          for(int i=1; i<=size; i++){
+              Node *curr=q.front();
+              q.pop();
+              if(curr->left&&!visited[curr->left]){
+                  fl=1;
+                  visited[curr->left]=1;
+                  q.push(curr->left);
+              }
+              if(curr->right&&!visited[curr->right]){
+                  fl=1;
+                  visited[curr->right]=1;
+                  q.push(curr->right);
+              }
+              if(mpp[curr]&&!visited[mpp[curr]]){
+                  fl=1;
+                  visited[mpp[curr]]=1;
+                  q.push(mpp[curr]);
+              }
+          }
+            
+          }
+    
+      }
