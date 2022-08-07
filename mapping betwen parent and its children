@@ -1,0 +1,16 @@
+void  bfstoparent(Node*root, int &target, map<Node*, Node*> &mpp){
+      queue<Node*>q;
+      q.push(root);
+          while(!q.empty()){
+          Node* node=q.front();
+          if(node->data==target) res=node;
+          q.pop();
+          if(node->left){
+              mpp[node->left]=node;
+              q.push(node->left);
+          }
+          if(node->right){
+              mpp[node->right]=node;
+              q.push(node->right);
+          }
+      }
