@@ -1,0 +1,27 @@
+int nodes(root){
+    if(root==NULL) return 0;
+    
+    int lh=flh(root);
+    int rh=frh(root);
+    if(lh==rh){
+        return (2^lh-1);
+    }
+    else
+    return 1+nodes(root->left)+nodes(root->right);
+}
+int flh(node){
+    int count=0;
+    while(node){
+        count++;
+        node->left;
+    }
+    return count;
+}
+int frh(root){
+    int count=0;
+    while(node){
+        count++;
+        node->right;
+    }
+    return count;
+}
