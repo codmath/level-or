@@ -1,0 +1,45 @@
+Node* findlastright(Node* root){
+    if(root->right==NULL){
+        return root;
+    }
+    return findlastright(root->left);
+}
+Node* helper(Node *root){
+    if(root->left==NULL){
+        return root->right;
+    }
+    else if(root->right==NULL){
+        return root->left;
+    }
+    Node *curr_right=root->right;
+    Node *lastRight=findlastright(root->left);
+    lastRight->right=curr_right;
+    return root->left;
+}
+Node *deleteNode(Node *root, int X) {
+    // your code goes here
+    if(root==NULL) return NULL;
+    if(root->data==X) return helper(root);
+    Node *temp=root;
+    while(root!=NULL){
+    if(X<root->data){
+    if(root->left!=NULL&&root->left->data==X){
+        root->left=helper(root->left);
+        break;
+    }
+    else{
+        root=root->left;
+    }
+    }
+    else{
+    if(root->right!=NULL&&root->right->data==X){
+        root->right=helper(root->right);
+        break;
+    }
+    else{
+        root=root->right;
+    }
+    }
+    }
+    return temp;
+}
